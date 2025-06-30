@@ -280,3 +280,43 @@ exports.filtrarProductoPorCategoria = (req, res) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 
+// 8. Filtrar productos por rango de precio
+
+exports.busquedaPorRangoDePrecio = (req, res) => {
+    const { min } = req.params
+    const { max } = req.params
+    if(!min || !max){
+        console.log('\x1b[31m No se ingresó el parámetro min o max! \x1b[0m')
+        return res.status(400).json({ mensaje: 'No se ingresó el parámetro min o max!'})
+    }
+    PRENDASENDB.find({ precio: { $gte: min, $lte: max } })
+    .then((prenda) => {
+        if(!prenda || prenda.length === 0){
+            console.log('\x1b[31m No existe un producto con ese rango de precio! \x1b[0m')
+            return res.status(404).json({ mensaje: 'No existe un producto con ese rango de precio!'})
+        }
+        // --- MAPEO + Console.table para mostrar x consola el producto en la Base de datos ----
+        
+        const existePrenda = prenda.map((prendita) => {
+            return {
+                codigo: prendita.codigo,
+                nombre: prendita.nombre,
+                precio: prendita.precio,
+                categoria: prendita.categoria
+            }
+        })
+    
+        console.log(`\x1b[103m Productos encontrados -> \x1b[0m`)
+        console.table(existePrenda)
+        console.log('\x1b[103m -------------------------------------------------------------------- \x1b[0m')
+        //---------------------------
+        
+        return res.status(200).json(prenda)
+    })
+    .catch((ERROR) => {
+        console.log('\x1b[31m No se pudo acceder a las prendas con ese rango de precio! -> \x1b[0m', ERROR)
+        return res.status(500).json({ mensaje: 'No se pudo acceder a las prendas con ese rango de precio!', error: ERROR })
+    })
+}
+
+////////////////////////////////////////////////////////////////////////////
