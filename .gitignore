@@ -1,1 +1,7 @@
 node_modules/
+data/computacion.json
+data/electronicos.json
+data/granjas.json
+data/mobiliario.json
+data/supermercados.json
+
