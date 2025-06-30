@@ -73,4 +73,36 @@ exports.prendasPorCodigo = (req, res) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+// 3. Crear un nuevo producto
+exports.agregarProducto = (req, res) => {
+    const nuevaPrenda = new PRENDASENDB({ ...req.body })
+
+    PRENDASENDB.findOne({ codigo: nuevaPrenda.codigo })
+        .then((prendaExistente) => {
+            if (prendaExistente) {
+                console.log('\x1b[33m Ya existe una prenda con ese código! \x1b[0m')
+                return res.status(409).json({ mensaje: 'Ya existe una prenda con ese código!' })
+            }
+
+            nuevaPrenda.save()
+
+            const agregadaPrenda = {
+                    codigo: nuevaPrenda.codigo,
+                    nombre: nuevaPrenda.nombre,
+                    precio: nuevaPrenda.precio,
+                    categoria: nuevaPrenda.categoria
+                }
+            console.log(`\x1b[102m Se agregó un nuevo producto a la base de datos con el código ${agregadaPrenda.codigo}  \x1b[0m`)
+            console.table(agregadaPrenda)
+            console.log('\x1b[102m -------------------------------------------------------------------- \x1b[0m')
+            return res.status(201).json({ mensaje: ['Nuevo producto agregado a la Base de Datos', nuevaPrenda] })
+        })
+       
+        .catch((ERROR) => {
+            console.log('\x1b[31m No se pudo agregar el producto a la base de datos! ->  \x1b[0m', ERROR)
+            return res.status(500).json({ mensaje: 'Error en el servidor al agregar el producto.', error: ERROR })
+        })
+}
+
+////////////////////////////////////////////////////////
 

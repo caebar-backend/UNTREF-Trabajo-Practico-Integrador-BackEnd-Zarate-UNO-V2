@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.get('/', controller.todasLasPrendas)
 router.get('/:codigo', controller.prendasPorCodigo)
+router.post('/', validarEsquemaProducto, controller.agregarProducto)
 
 
 module.exports = router
