@@ -1,5 +1,6 @@
 const { PRENDASENDB } = require('../models/product')
 
+// 1. Obtener todos los productos
 exports.todasLasPrendas = (req, res) => {
     PRENDASENDB.find({})
     .then((prendas) => {
@@ -28,3 +29,7 @@ exports.todasLasPrendas = (req, res) => {
         return res.status(500).json({ mensaje: 'No se pudo acceder a las prendas para mostralas! ', error: ERROR })
     })
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// 2. Obtener un producto por su código

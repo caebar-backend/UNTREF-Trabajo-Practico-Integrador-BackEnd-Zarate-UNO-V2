@@ -5,6 +5,7 @@ const { validarEsquemaProducto } = require('../middlewares/validarEsquemaProduct
 const router = express.Router()
 
 router.get('/', controller.todasLasPrendas)
+router.get('/:codigo', controller.prendasPorCodigo)
 
 
 module.exports = router
