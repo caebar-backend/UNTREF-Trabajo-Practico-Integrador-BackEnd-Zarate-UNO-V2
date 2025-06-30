@@ -146,3 +146,44 @@ exports.modificarProducto = (req, res) => {
 }
 
 /////////////////////////////////////////////////////////////////
+
+// 5. Eliminar un producto
+exports.eliminarProducto = (req, res) => {
+    const codigoSP = req.params.codigo
+    const codigoParseado = parseInt(codigoSP)
+    if(isNaN(codigoParseado)){
+            console.log('\x1b[31m El código ingresado no es numérico! \x1b[0m')
+            return res.status(400).json({ mensaje: 'El código ingresado no es numérico!'})
+        }
+    if(codigoParseado < 0){
+        console.log('\x1b[31m El código ingresado no es numérico POSITIVO! \x1b[0m')
+        return res.status(400).json({ mensaje: 'El código ingresado no es numérico POSITIVO!'})
+    }
+        PRENDASENDB.findOneAndDelete({ codigo: codigoParseado })
+        .then((prenda) => {
+            if(!prenda){
+                console.log('\x1b[31m No existe un producto con ese código! \x1b[0m')
+                return res.status(404).json({ mensaje: 'No existe un producto con ese código!'})
+            }
+            
+            const eliminadaPrenda = {
+                    codigo: codigoParseado,
+                    nombre: prenda.nombre,
+                    precio: prenda.precio,
+                    categoria: prenda.categoria
+                }
+            
+            console.log(`\x1b[102m Producto eliminado con el código -> ${codigoParseado} <- : \x1b[0m`)
+            console.log('\x1b[32m Se eliminó un producto en la base de datos con el código -> \x1b[0m', codigoParseado)
+            console.table(eliminadaPrenda)
+            console.log('\x1b[102m -------------------------------------------------------------------- \x1b[0m')
+            return res.status(200).json({ mensaje: ['Producto eliminado en la Base de Datos', eliminadaPrenda] })
+            
+        })
+    
+        .catch((ERROR) => {
+            console.log('\x1b[31m No se pudo eliminar el producto en la base de datos! -> \x1b[0m', ERROR)
+            return res.status(500).json({ mensaje: 'Error en el servidor al eliminar el producto.', error: ERROR })
+        })
+}
+/////////////////////////////////////////////////////////////////////////////////
