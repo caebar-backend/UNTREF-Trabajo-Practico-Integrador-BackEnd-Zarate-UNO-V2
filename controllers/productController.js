@@ -320,3 +320,39 @@ exports.busquedaPorRangoDePrecio = (req, res) => {
 }
 
 ////////////////////////////////////////////////////////////////////////////
+
+// 9. Carga masiva de productos
+
+exports.agregarProductosMasivos = (req, res) => {
+
+  const prendas = Array.isArray(req.body) ? req.body : [req.body]
+
+  const codigos = prendas.map(p => p.codigo)
+
+  PRENDASENDB.find({ codigo: { $in: codigos } })
+    .then(prendasExistentes => {
+      if (prendasExistentes.length > 0) {
+        const codigosExistentes = prendasExistentes.map(p => p.codigo)
+        console.log('\x1b[33m Algunos códigos ya existen en la base de datos. \x1b[0m')
+        return res.status(409).json({ mensaje: 'Algunos códigos ya existen', codigos: codigosExistentes })
+      }
+
+      PRENDASENDB.insertMany(prendas)
+        .then(prendasAgregadas => {
+          console.log(`\x1b[102m Se agregaron ${prendasAgregadas.length} prendas a la base de datos \x1b[0m`)
+          prendasAgregadas.forEach(p => console.table({ codigo: p.codigo, nombre: p.nombre, precio: p.precio }))
+          return res.status(201).json({ mensaje: 'Prendas agregadas exitosamente', prendas: prendasAgregadas })
+        })
+        .catch(error => {
+          console.log('\x1b[31m Error al guardar las prendas: \x1b[0m', error)
+          return res.status(500).json({ mensaje: 'Error al guardar las prendas', error })
+        })
+    })
+    .catch(error => {
+      console.log('\x1b[31m Error al verificar duplicados: \x1b[0m', error);
+      return res.status(500).json({ mensaje: 'Error al verificar códigos existentes', error })
+    })
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
