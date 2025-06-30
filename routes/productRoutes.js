@@ -10,6 +10,7 @@ router.get('/:codigo', controller.prendasPorCodigo)
 router.post('/', validarEsquemaProducto, controller.agregarProducto)
 router.put('/:codigo', controller.modificarProducto)
 router.delete('/:codigo', controller.eliminarProducto)
+router.get('/categoria/:categoria', controller.filtrarProductoPorCategoria)
 
 
 module.exports = router
