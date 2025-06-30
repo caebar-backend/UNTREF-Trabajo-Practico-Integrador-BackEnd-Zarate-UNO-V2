@@ -62,8 +62,8 @@ Accept: application/json
 # --- Endpoints Adicionales ---
 
 ### 6. Buscar productos por término
-# Busca productos que contengan 'Laptop' en su nombre.
-GET {{api_url}}/productos/buscar?q=Vestido
+# Busca productos que contengan 'Blusa' en su nombre.
+GET {{api_url}}/productos/buscar?q=blusa
 Accept: application/json
 
 ### 7. Filtrar productos por categoría
