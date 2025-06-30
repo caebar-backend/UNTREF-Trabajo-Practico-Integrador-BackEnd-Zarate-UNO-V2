@@ -190,7 +190,7 @@ exports.eliminarProducto = (req, res) => {
 
 // 6. Buscar productos por término
 
-xports.buscarProductoPorCoincidenciaEnNombre = (req, res) => {
+exports.buscarProductoPorCoincidenciaEnNombre = (req, res) => {
     const { q } = req.query
     if(!q){
         console.log('\x1b[31m No se ingresó el parámetro q! \x1b[0m')
