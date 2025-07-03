@@ -15,6 +15,44 @@
 ###
 # --- CRUD Básico ---
 
+### OBTENER TOKEN DE AUTENTICACIÓN
+### FABIO DRIZZT
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+  "email": "fabiodrizztUNTREF@gmail.com",
+  "password": "12345678"
+}
+
+### JUAN NEBBIA
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+  "email": "juannebbiaUNTREF@gmail.com",
+  "password": "12345678"
+}
+
+### CRISTIAN BUDANO
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+  "email": "caebar@gmail.com",
+  "password": "12345678"
+}
+
+### INVITADO X
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+  "email": "invitadoxxx@gmail.com",
+  "password": "12345678"
+}
+
+
 ### 1. Obtener todos los productos
 # Devuelve la lista completa de productos.
 GET {{api_url}}/productos
@@ -34,6 +72,7 @@ Accept: application/json
 # Asegúrate de que el 'codigo' sea único.
 POST {{api_url}}/productos
 Content-Type: application/json
+# Authorization: Bearer {{token}}
 
 {
     "codigo": 101,
@@ -47,6 +86,7 @@ Content-Type: application/json
 # Solo se necesita enviar los campos a modificar.
 PUT {{api_url}}/productos/101
 Content-Type: application/json
+# Authorization: Bearer {{token}}
 
 {
     "precio": 950.00
@@ -56,6 +96,7 @@ Content-Type: application/json
 # Reemplaza '2' con un código de producto que desees eliminar.
 DELETE {{api_url}}/productos/101
 Accept: application/json
+# Authorization: Bearer {{token}}
 
 
 ###
@@ -80,6 +121,7 @@ Accept: application/json
 # Agrega múltiples productos en una sola petición.
 POST {{api_url}}/productos/masivo
 Content-Type: application/json
+# Authorization: Bearer {{token}}
 
 [
     {
