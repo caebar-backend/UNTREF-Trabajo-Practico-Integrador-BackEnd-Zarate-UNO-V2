@@ -1,3 +1,5 @@
+// Array de objetos que contienen los datos de los usuarios autorizados
+// Datos que son credenciales de acceso a la aplicación
 const usersAutorizados = [
     {
         id: 1,
@@ -32,5 +34,5 @@ const usersAutorizados = [
         rol: 'VIP'
     }
 ]
-
+// Exporto el array de objetos de usuariosAutorizados
 module.exports = usersAutorizados

@@ -1,10 +1,15 @@
-const mongoose = require('mongoose')
-process.loadEnvFile()
 
+// Requiero el modulo de mongoose
+const mongoose = require('mongoose')
+// Llamo al proceso de carga de datos desde el archivo .env
+process.loadEnvFile()
+// Obtengo los datos de la base de datos de MongoDB desde el archivo .env
 const { DB_USER, DB_PASSWORD, DB_NAME } = process.env
 
+// Creo la conexión a la base de datos de MongoDB usando los datos obtenidos de .env
 const MONGODB_URI = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.aii06k7.mongodb.net/${DB_NAME}`
 
+// Función que conecta a la base de datos de MongoDB
 const connectDB = async () => {
     try {
         await mongoose.connect(MONGODB_URI)
@@ -16,5 +21,5 @@ const connectDB = async () => {
         process.exit(1)
     }
 }
-
+// Exporto la función connectDB (conexión a la base de datos de MongoDB)
 module.exports = connectDB

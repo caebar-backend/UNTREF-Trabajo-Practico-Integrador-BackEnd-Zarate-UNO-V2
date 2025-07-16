@@ -1,4 +1,12 @@
+#######
+# Se define parte de la URL de rutas a utilizar
 @api_url = http://localhost:3000/api
+
+# Se define parte de la URL de rutas a utilizar
+@api_url_2 = http://localhost:3000/api/usuarios
+
+# Incluir el token obtenido en la siguiente línea. Por Ejemplo:
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI3MDYwMDIsImV4cCI6MTc1MjcwOTYwMn0.1ZM_jvNh3tl2VSHxbSo_D-uwBDrwRU6oOwELarxzoos
 
 ###
 # TRABAJO INTEGRADOR: API de Productos
@@ -17,7 +25,7 @@
 
 ### OBTENER TOKEN DE AUTENTICACIÓN
 ### FABIO DRIZZT
-POST http://localhost:3000/api/usuarios/login
+POST {{api_url_2}}/login
 Content-Type: application/json
 
 {
@@ -26,7 +34,7 @@ Content-Type: application/json
 }
 
 ### JUAN NEBBIA
-POST http://localhost:3000/api/usuarios/login
+POST {{api_url_2}}/login
 Content-Type: application/json
 
 {
@@ -35,7 +43,7 @@ Content-Type: application/json
 }
 
 ### CRISTIAN BUDANO
-POST http://localhost:3000/api/usuarios/login
+POST {{api_url_2}}/login
 Content-Type: application/json
 
 {
@@ -44,7 +52,7 @@ Content-Type: application/json
 }
 
 ### INVITADO X
-POST http://localhost:3000/api/usuarios/login
+POST {{api_url_2}}/login
 Content-Type: application/json
 
 {
@@ -72,7 +80,7 @@ Accept: application/json
 # Asegúrate de que el 'codigo' sea único.
 POST {{api_url}}/productos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI2MTk2NzUsImV4cCI6MTc1MjYyMzI3NX0.WcQWeSvkUvih-nzN3x0ba_8i31f0Gmko-XJydtvU7X8
+Authorization: Bearer {{token}}
 
 {
     "codigo": 101,
@@ -86,7 +94,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiY
 # Solo se necesita enviar los campos a modificar.
 PUT {{api_url}}/productos/101
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI2MTk2NzUsImV4cCI6MTc1MjYyMzI3NX0.WcQWeSvkUvih-nzN3x0ba_8i31f0Gmko-XJydtvU7X8
+Authorization: Bearer {{token}}
 
 {
     "precio": 950.00
@@ -96,7 +104,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiY
 # Reemplaza '2' con un código de producto que desees eliminar.
 DELETE {{api_url}}/productos/101
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI2MTk2NzUsImV4cCI6MTc1MjYyMzI3NX0.WcQWeSvkUvih-nzN3x0ba_8i31f0Gmko-XJydtvU7X8
+Authorization: Bearer {{token}}
 
 
 ###
@@ -121,7 +129,7 @@ Accept: application/json
 # Agrega múltiples productos en una sola petición.
 POST {{api_url}}/productos/masivo
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI2MTk2NzUsImV4cCI6MTc1MjYyMzI3NX0.WcQWeSvkUvih-nzN3x0ba_8i31f0Gmko-XJydtvU7X8
+Authorization: Bearer {{token}}
 
 [
     {
@@ -135,5 +143,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiY
         "nombre": "Botas de Invierno",
         "precio": 249.50,
         "categoria": ["Calzado", "Mujer"]
+    },
+    {
+        "codigo": 203,
+        "nombre": "Zapatillas Unisex",
+        "precio": 399.99,
+        "categoria": ["Calzado","Mujer","Caballero", "Ropa"]
     }
 ]

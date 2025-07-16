@@ -1,7 +1,12 @@
-PORT='3000'
+# Definir puerto "3000" para usar en la aplicación #
+PORT=
+# Anotar el usuario de la base de datos en mongo DB #
 DB_USER=
+# Inscribir el password usado en la base de datos en mongo DB #
 DB_PASSWORD=
+# Establecer la denominación de la base de datos en mongo DB #
 DB_NAME=
-LOCALHOST='127.0.0.1'
+# Mencionar la dirección local del servidor "127.0.0.1" #
+LOCALHOST=
+# Agendar una clave secreta para la constante JWT_SECRET, ejemplo : "clave_secreta_2025" #
 JWT_SECRET=
-

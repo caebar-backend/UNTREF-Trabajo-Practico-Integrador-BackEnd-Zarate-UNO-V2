@@ -1,4 +1,6 @@
 
+
+// Exporto la función rutaNoEncontradaInexistente (Endpoint que maneja la respuesta cuando la ruta no existe)
 exports.rutaNoEncontradaInexistente = (req, res) => {
     const { url } = req
     res.status(404).json({
