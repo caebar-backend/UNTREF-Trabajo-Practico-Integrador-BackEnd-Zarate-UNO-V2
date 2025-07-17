@@ -6,7 +6,7 @@
 @api_url_2 = http://localhost:3000/api/usuarios
 
 # Incluir el token obtenido en la siguiente línea. Por Ejemplo:
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI3MDYwMDIsImV4cCI6MTc1MjcwOTYwMn0.1ZM_jvNh3tl2VSHxbSo_D-uwBDrwRU6oOwELarxzoos
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sIjoiYWRtaW4iLCJpYXQiOjE3NTI3OTMwMDMsImV4cCI6MTc1Mjc5NjYwM30.JxjFb1CQ13kpL73OKP3mMg2nIXALkdWkFSN-bpaFizo
 
 ###
 # TRABAJO INTEGRADOR: API de Productos
@@ -105,7 +105,6 @@ Authorization: Bearer {{token}}
 DELETE {{api_url}}/productos/101
 Accept: application/json
 Authorization: Bearer {{token}}
-
 
 ###
 # --- Endpoints Adicionales ---
